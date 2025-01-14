@@ -1,0 +1,79 @@
+﻿<Window x:Class="QuizWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="System Quizów - Dodawanie Pytań" Height="600" Width="900">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Wybór quizu -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,20">
+            <Label Content="Wybierz Quiz:" FontWeight="Bold" FontSize="14"/>
+            <ComboBox x:Name="ComboQuizy" DisplayMemberPath="Nazwa" 
+                      SelectionChanged="ComboQuizy_SelectionChanged" Height="30" FontSize="12"/>
+        </StackPanel>
+
+        <!-- Dodawanie pytania -->
+        <GroupBox Grid.Row="1" Header="Dodaj Pytanie" Padding="10" Margin="0,0,0,10">
+            <StackPanel>
+                <Label Content="Treść pytania:"/>
+                <TextBox x:Name="TxtPytanie" Height="30" Margin="0,0,0,10"/>
+
+                <Label Content="Odpowiedzi (zaznacz poprawną):"/>
+
+                <Grid Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="ChkOdp1" Grid.Column="0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TxtOdp1" Grid.Column="1" Height="25"/>
+                </Grid>
+
+                <Grid Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="ChkOdp2" Grid.Column="0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TxtOdp2" Grid.Column="1" Height="25"/>
+                </Grid>
+
+                <Grid Margin="0,0,0,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="ChkOdp3" Grid.Column="0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TxtOdp3" Grid.Column="1" Height="25"/>
+                </Grid>
+
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="ChkOdp4" Grid.Column="0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="TxtOdp4" Grid.Column="1" Height="25"/>
+                </Grid>
+
+                <Button Content="Dodaj Pytanie" Click="BtnDodajPytanie_Click" 
+                        Height="35" FontSize="14" Background="#4CAF50" 
+                        Foreground="White" FontWeight="Bold"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Lista pytań -->
+        <GroupBox Grid.Row="2" Header="Pytania w Quizie" Padding="10">
+            <ListBox x:Name="ListaPytan" FontSize="12"/>
+        </GroupBox>
+
+        <!-- Status -->
+        <TextBlock x:Name="TxtStatus" Grid.Row="3" Margin="0,10,0,0" 
+                   FontSize="12" Foreground="Green"/>
+    </Grid>
+</Window>
