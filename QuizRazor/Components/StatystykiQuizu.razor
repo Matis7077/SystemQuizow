@@ -1,0 +1,40 @@
+﻿@using QuizCore.Serwisy
+@using QuizCore.Modele
+
+<div class="card mb-4">
+    <div class="card-header bg-info text-white">
+        <h5>📊 Statystyki Systemu</h5>
+    </div>
+    <div class="card-body">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <h3>@LiczbaQuizow</h3>
+                <p class="text-muted">Quizów w systemie</p>
+            </div>
+            <div class="col-md-4">
+                <h3>@LiczbaPytan</h3>
+                <p class="text-muted">Wszystkich pytań</p>
+            </div>
+            <div class="col-md-4">
+                <h3>@SredniaPytan.ToString("F1")</h3>
+                <p class="text-muted">Średnia pytań/quiz</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private int LiczbaQuizow { get; set; }
+    private int LiczbaPytan { get; set; }
+    private double SredniaPytan { get; set; }
+
+    protected override void OnInitialized()
+    {
+        var quizSerwis = new QuizSerwis();
+        var quizy = quizSerwis.PobierzWszystkieQuizy();
+
+        LiczbaQuizow = quizy.Count;
+        LiczbaPytan = quizy.Sum(q => q.Pytania.Count);
+        SredniaPytan = LiczbaQuizow > 0 ? (double)LiczbaPytan / LiczbaQuizow : 0;
+    }
+}
